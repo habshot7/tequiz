@@ -3070,3 +3070,11 @@
 {
 	background-color: limegreen;
 }
+.button.alt.unseen
+{
+	background-color: inherit;
+}
+.button.alt.unmarked
+{
+	background-color: yellow;
+}
