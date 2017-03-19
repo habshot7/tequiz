@@ -5,6 +5,8 @@
  * Date: 19-03-2017
  * Time: 07:17
  */
-//Checking Git
+include "views/view_question.php";
+
+
 
 ?>
