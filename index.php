@@ -12,8 +12,11 @@ if(isset($_SESSION['inTest']) == false) {
     if ($sqlConn->prepare("SELECT id,name,numques,UNIX_TIMESTAMP(testTime),maxTime FROM event ORDER BY id DESC LIMIT 1")) {
         $sqlConn->execute();
         $sqlConn->store_result();
+        /** @noinspection PhpUndefinedVariableInspection */
         $sqlConn->bind_result($testId, $testName, $numQues, $startTime, $maxTime);
         $sqlConn->fetch();
+        $sqlConn->close();
+
 
 
         $_SESSION['inTest'] = true;

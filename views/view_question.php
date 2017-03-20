@@ -6,10 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
         <script>
-            var countDownDate = <?php $def = 1489996190; if(isset($_SESSION['endTime'])) echo $_SESSION['endTime']; else echo $def;?>;
+            var countDownDate =
+                <?php
+                $def = '1490082590';
+                if(isset($_SESSION['endTime']))
+                    echo $_SESSION['endTime'];
+                else echo $def;
+                ?> ;
             countDownDate = countDownDate * 1000;
             var x = setInterval(function() {
                 var idToDisp = "countDowntimer";
+                var fixedDisp = "fixedCountDown";
                 var now = new Date().getTime();
                 var distance = countDownDate - now;
                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -39,6 +46,7 @@
                     displayMsg = "Timer Expired";
                 }
                 document.getElementById(idToDisp).innerHTML = displayMsg;
+                document.getElementById(fixedDisp).innerHTML = displayMsg;
             }, 1000);
         </script>
 	</head>
@@ -49,7 +57,7 @@
 				<div class="inner">
 					<a href="index.html" class="logo">tequiz</a>
 					<nav id="nav">
-						<a href="index.php">Home</a>
+                        <span id="fixedCountDown"></span>
 					</nav>
 					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 				</div>
@@ -58,7 +66,7 @@
 		<!-- Three -->
 			<section id="three" class="wrapper">
 				<div class="inner">
-				<div class="flex flex-2">
+				<!--<div class="flex flex-2">
 					<header>
                         <h4><?php
                         if(isset($_SESSION["testName"]))
@@ -70,52 +78,48 @@
                             if (isset($_SESSION['quesNum']))
                                 echo "Question No. ".(string)$_SESSION['quesNum'];
                             else
-                                echo "Unknown Ques Number";
+                                echo "Total no of questions<br> Total Marks <br> Negative Marking";
                             ?></p>
 					</header>
 					<header class="box">
 						<h4>Time Left</h4>
 						<p id="countDowntimer"> = = Time Left = = </p>
 					</header>
-				</div>
+				</div>-->
                     <h5>Question</h5>
 					<p class="box"><?php
                         if(isset($_SESSION['question']))
                             echo htmlspecialchars($_SESSION['quesNum']);
                         else
-                            echo "Which option you like the most?"
+                            echo "Which option you like the most?";
                         ?></p>
                     <h5>Options</h5>
 					<form action="" method="post">
                         <div class="flex flex-2">
-                            <div class="box 6u 12u$(small)">
+                            <div class="box align-left 6u 12u$(small)">
                                 <input type="radio" name="options" id="A" value="optionA">
-                                <label for="A">A. Option A</label>
+                                <label for="A">A. Option A<br>Break works?</label>
                             </div>
-                            <div class="box 6u 12u$(small)">
+                            <div class="box align-left 6u 12u$(small)">
                                 <input type="radio" name="options" id="B" value="optionB">
-                                <label for="B">B. Option B</label>
+                                <label for="B">B. Option B Using long texts will it work well inside a label? let us see that.. i guess it should</label>
                             </div>
-                            <div class="box 6u 12u$(small)">
+                            <div class="box align-left 6u 12u$(small)">
                                 <input type="radio" name="options" id="C" value="optionC">
-                                <label for="C">C. Option C</label>
+                                <label for="C">C. Option C <code>Using code tag inside a label.. let us see if it works.. and yes it does it very well</code></label>
                             </div>
-                            <div class="box 6u 12u$(small)">
+                            <div class="box align-left 6u 12u$(small)">
                                 <input type="radio" name="options" id="D" value="optionD">
                                 <label for="D">D. Option D</label>
                             </div>
-                            <div class="box 6u 12u$(small)">
-                                <input type="radio" name="options" id="nota" value="nota">
-                                <label for="nota">None Of The Above</label>
-                            </div>
-                            <div class="box 6u 12u$(small)">
+                            <div class="box align-left 6u 12u$(small)" style="display: none;">
                                 <input type="radio" name="options" id="unmark" value="unmark" checked>
                                 <label for="unmark">Unanswer</label>
                             </div>
                         </div>
-                        <div class="6u 12u$">
+                        <div class="align-left 12u 12u$">
                             <input type="reset" class="button alt" value="Unanswer">
-                            <input type="submit" value="Submit &amp; Next">
+                            <input type="submit" value="Next">
                         </div>
 
 					</form>
@@ -124,7 +128,7 @@
 					    <table>
                             <?php
                                 $quesNumber = 20;
-                                $quesInOneLine = 8;
+                                $quesInOneLine = 6;
                                 $qNo = 1;
                                 for($row = 0 ; $row <= $quesNumber/$quesInOneLine ; $row++ )
                                 {
@@ -141,13 +145,13 @@
                         <footer>
                             <h5>Response Color Codes</h5>
                             <div class="box flex flex-3">
-                                <div class="4u 16u$">
+                                <div class="4u 12u$(small)">
                                     <a href="#" class="button alt">Q. No</a> Unvisited Ques.<br>
                                 </div>
-                                <div class="4u 16u$">
+                                <div class="4u 12u$(small)">
                                     <a href="#" class="button alt answered">Q. No</a> Answered Ques.<br>
                                 </div>
-                                <div class="4u 16u$">
+                                <div class="4u 12u$(small)">
                                     <a href="#" class="button alt unmarked">Q. No</a> Unanswered Ques.
                                 </div>
                             </div>
